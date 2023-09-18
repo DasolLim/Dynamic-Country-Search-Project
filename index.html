@@ -4,10 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SE3316 Lab 1</title>
-    <!--link rel="stylesheet" href="styles.css"-->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <h1>Search Country and Currnecy</h1>
+
+    <!-- Search boxes -->
+    <div class="search-container">
+        <input type="text" id="countryName" placeholder="Search..." maxlength="20">
+        <button onclick="validateCountryName()">Search</button>
+        
+        <input type="text" id="currencyCode" placeholder="Search..." maxlength="3">
+        <button onclick="validateCurrencyCode()">Search</button>
+    </div>
+
     <ul class="countryList">
         <!--country 1-->
         <li class="country">
@@ -808,5 +820,10 @@
             </span>
         </li>
     </ul>
+
+    <!--example js-->
+
+    <script src="script.js"></script>
+
 </body>
 </html>
