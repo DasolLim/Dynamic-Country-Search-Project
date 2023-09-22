@@ -1,0 +1,90 @@
+h1 {
+    padding-top: 10px;
+    text-align: center;
+    text-shadow: 2px 3px 0 rgb(125, 177, 255);
+}
+
+.region-text {
+    font-weight: bold;
+}
+
+.country {
+    margin-bottom: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+}
+
+.countryList {
+    list-style: none;
+}
+
+#countryName,
+#currencyCode {
+    width: 300px;
+    min-height: 24px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    transition: all 0.2s ease-in-out 0s;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+button {
+    min-height: 24px;
+    padding-bottom: 2px;
+}
+
+button:hover {
+    font-weight: bold;
+    color: rgb(0, 102, 255);
+    background-color: white;
+}
+
+#countryName:focus,
+#currencyCode:focus {
+    outline: none;
+    border: 1px solid rgb(125, 177, 255);
+    box-shadow: inset 0 0 0 1px rgb(125, 177, 255);
+}
+
+.country-search-container {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-right: 15px;
+}
+
+.currency-search-container {
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+.search-container {
+    top: 15px;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.header-container {
+    background-color: rgb(0, 102, 255);
+}
+
+ul {
+    padding-inline-start: 0px;
+}
+
+li {
+    background: rgb(54, 134, 255);
+}
+
+li:nth-child(odd) {
+    background: rgb(125, 177, 255);
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(255, 255, 255);
+}

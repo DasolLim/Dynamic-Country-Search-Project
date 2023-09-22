@@ -4,21 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SE3316 Lab 1</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
 </head>
 
 <body>
-    <h1>Search Country and Currnecy</h1>
+    <h1>SE3316 LAB 1</h1>
 
     <!-- Search boxes -->
-    <div class="search-container">
-        <input type="text" id="countryName" placeholder="Search..." maxlength="20">
-        <button onclick="searchCountryName()">Search</button>
-        
-        <input type="text" id="currencyCode" placeholder="Search..." maxlength="3">
-        <button onclick="searchCurrencyCode()">Search</button>
-    </div>
+    <header class="header-container">
+        <div class="search-container">
+            <div class="country-search-container">
+                <input type="text" id="countryName" placeholder="Search Country Name .." maxlength="20">
+                <button onclick="searchCountryName()">Search</button>
+            </div>
+            <div class="currency-search-container">
+                <input type="text" id="currencyCode" placeholder="Search Currency Code .." maxlength="3">
+                <button onclick="searchCurrencyCode()">Search</button>
+            </div>
+        </div>
+    </header>
+
     <div class="container">
         <ul class="countryList">
             <!--country 1-->
@@ -28,7 +34,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/United_States" target="_blank">United States of America</a></h2>
-                    <p class="currency">USD</p>
+                    <p class="currency"><b>Currency: </b> USD</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Alabama, 
                         Alaska, 
@@ -92,7 +99,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Canada" target="_blank">Canada</a></h2>
-                    <p class="currency">CAD</p>
+                    <p class="currency"><b>Currency: </b> CAD</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Alberta, 
                         British Columbia, 
@@ -118,7 +126,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Mexico" target="_blank">Mexico</a></h2>
-                    <p class="currency">MXN</p>
+                    <p class="currency"><b>Currency: </b> MXN</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Aguascalientes, 
                         Baja California, 
@@ -163,7 +172,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Brazil" target="_blank">Brazil</a></h2>
-                    <p class="currency">BRL</p>
+                    <p class="currency"><b>Currency: </b> BRL</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Acre, 
                         Alagoas, 
@@ -203,7 +213,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Argentina" target="_blank">Argentina</a></h2>
-                    <p class="currency">ARS</p>
+                    <p class="currency"><b>Currency: </b> ARS</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Buenos Aires, 
                         Catamarca, 
@@ -240,7 +251,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Haiti" target="_blank">Haiti</a></h2>
-                    <p class="currency">HTG</p>
+                    <p class="currency"><b>Currency: </b> HTG</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Artibonite, 
                         Centre, 
@@ -261,7 +273,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/France" target="_blank">France</a></h2>
-                    <p class="currency">EUR</p>
+                    <p class="currency"><b>Currency: </b> EUR</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Auvergne-Rhone-Alpes, 
                         Bourgogne-Franche-Comte, 
@@ -287,7 +300,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Germany" target="_blank">Germany</a></h2>
-                    <p class="currency">EUR</p>
+                    <p class="currency"><b>Currency: </b> EUR</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Baden-Wurttemberg, 
                         Bayern, 
@@ -316,7 +330,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Russia" target="_blank">Russian Federation</a></h2>
-                    <p class="currency">RUB</p>
+                    <p class="currency"><b>Currency: </b> RUB</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Adygeya, Respublika, 
                         Altay, Respublika, 
@@ -412,7 +427,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/China" target="_blank">China</a></h2>
-                    <p class="currency">CNY</p>
+                    <p class="currency"><b>Currency: </b> CNY</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Anhui, 
                         Beijing, 
@@ -456,7 +472,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Japan" target="_blank">Japan</a></h2>
-                    <p class="currency">JPY</p>
+                    <p class="currency"><b>Currency: </b> JPY</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Aichi, 
                         Akita, 
@@ -516,7 +533,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Greece" target="_blank">Greece</a></h2>
-                    <p class="currency">EUR</p>
+                    <p class="currency"><b>Currency: </b> EUR</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Anatoliki Makedonia kai Thraki, 
                         Attiki, 
@@ -542,7 +560,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/South_Africa" target="_blank">South Africa</a></h2>
-                    <p class="currency">ZAR</p>
+                    <p class="currency"><b>Currency: </b> ZAR</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Eastern Cape, 
                         Free State, 
@@ -564,7 +583,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Nigeria" target="_blank">Nigeria</a></h2>
-                    <p class="currency">NGN</p>
+                    <p class="currency"><b>Currency: </b> NGN</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Abia, 
                         Abuja Federal Capital Territory, 
@@ -614,7 +634,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Australia" target="_blank">Australia</a></h2>
-                    <p class="currency">AUD</p>
+                    <p class="currency"><b>Currency: </b> AUD</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Australian Capital Territory, 
                         New South Wales, 
@@ -635,7 +656,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Egypt" target="_blank">Egypt</a></h2>
-                    <p class="currency">EGP</p>
+                    <p class="currency"><b>Currency: </b> EGP</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Ad Daqahliyah, 
                         Al Bahr al Ahmar, 
@@ -675,7 +697,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Saudi_Arabia" target="_blank">Saudi Arabia</a></h2>
-                    <p class="currency">SAR</p>
+                    <p class="currency"><b>Currency: </b> SAR</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Asir, 
                         Al Bahah, 
@@ -701,7 +724,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Italy" target="_blank">Italy</a></h2>
-                    <p class="currency">EUR</p>
+                    <p class="currency"><b>Currency: </b> EUR</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Abruzzo, 
                         Basilicata, 
@@ -734,7 +758,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/New_Zealand" target="_blank">New Zealand</a></h2>
-                    <p class="currency">NZD</p>
+                    <p class="currency"><b>Currency: </b> NZD</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Auckland, 
                         Bay of Plenty, 
@@ -764,7 +789,8 @@
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Croatia" target="_blank">Croatia</a></h2>
-                    <p class="currency">HRK</p>
+                    <p class="currency"><b>Currency: </b> HRK</p>
+                    <span class="region-text">Region(s): </span>
                     <span class="region">
                         Bjelovarsko-bilogorska zupanija, 
                         Brodsko-posavska zupanija, 
