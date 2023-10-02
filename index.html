@@ -6,25 +6,40 @@
     <title>SE3316 Lab 1</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
+
+    <style>
+        /* Define a class for country images */
+        .country-image {
+            max-width: 100px;
+            max-height: 60px;
+        }
+    </style>
+
 </head>
 
 <body>
     <h1>SE3316 LAB 1</h1>
 
-    <!--test-->
     <!-- Search boxes -->
     <header class="header-container">
         <div class="search-container">
             <div class="country-search-container">
-                <input type="text" id="countryName" placeholder="Search Country Name .." maxlength="20">
-                <button onclick="searchCountryName()">Search</button>
+                <input type="text" id="countryName" placeholder="Search Country Name .." maxlength="20" oninput="searchCountryName()">
             </div>
             <div class="currency-search-container">
-                <input type="text" id="currencyCode" placeholder="Search Currency Code .." maxlength="3">
-                <button onclick="searchCurrencyCode()">Search</button>
+                <input type="text" id="currencyCode" placeholder="Search Currency Code .." maxlength="3" oninput="searchCurrencyCode()">
             </div>
         </div>
     </header>
+
+    <!-- Dynamically update this list -->
+    <!-- Create a new content block -->
+    <div id="display-result">
+        <h2>Dynamic Search Display</h2>
+        <div id="new-content">
+            <!-- Dynamically create a new list with list elements -->
+        </div>
+    </div>
 
     <div class="container">
         <ul class="countryList">

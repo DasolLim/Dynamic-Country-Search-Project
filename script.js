@@ -4,7 +4,6 @@ var currencyCodeData = [];
 
 // DOMContentLoaded process web contents and prevent 'undefined' contents 
 document.addEventListener("DOMContentLoaded", function () {
-
     // Select all class name "country"
     var countryElements = document.querySelectorAll('.country');
 
@@ -28,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
             currencyCodeData.push(currency);
         }
     });
-
 });
 
 function searchDisplay(input) {
@@ -37,8 +35,8 @@ function searchDisplay(input) {
     var matchingCurrencyCodes = [];
 
     // Check for matches and add
-    if (!countryName == "") {
-        for (let i = 0; i < 20; i++) {
+    if (!input == "") {
+        for (let i = 0; i < countryData.length; i++) {
             var country = countryData[i];
             var code = currencyCodeData[i];
             if (country.toLowerCase().includes(input.toLowerCase())) {
@@ -46,30 +44,38 @@ function searchDisplay(input) {
                 matchingCurrencyCodes.push(code);
             }
 
-            // Ensure maximum 5 matches
+            // Ensure a maximum of 5 matches
             if (matchingCountries.length >= 5) {
                 break;
             }
         }
     }
 
-    // Display alert
-    if (matchingCountries.length > 0) {
-        var alertMessage = "";
-        for (var i = 0; i < matchingCountries.length; i++) {
-            alertMessage += "Country Found: " + matchingCountries[i] + "\n" + "Currency Found: " + matchingCurrencyCodes[i] + "\n\n";
-        }
-        alert(alertMessage);
-    } else {
-        alert("No matching countries found.");
-    }
+    // Display results in the "new-content" div
+    var newContentDiv = document.getElementById("new-content");
+    newContentDiv.innerHTML = "";
 
-    /*
-    // Check if the input is longer than 20 characters
-    if (countryName.length > 20) {
-        alert('Error: Country name should be no more than 20 characters');
+    if (matchingCountries.length === 0 || input === "") {
+        newContentDiv.style.display = "none"; // Hide the "new-content" div
+    } else {
+        newContentDiv.style.display = "block"; // Show the "new-content" div
+
+        matchingCountries.forEach(function (country, index) {
+            // Create elements for the country data
+            var countryDiv = document.createElement("div");
+            var countryName = document.createElement("h3");
+            var countryDescription = document.createElement("p");
+
+            // Set content
+            countryName.textContent = country;
+            countryDescription.textContent = "Currency Code: " + matchingCurrencyCodes[index];
+
+            // Append elements to the "new-content" div
+            countryDiv.appendChild(countryName);
+            countryDiv.appendChild(countryDescription);
+            newContentDiv.appendChild(countryDiv);
+        });
     }
-    */
 }
 
 // Function to search the country name input
@@ -83,23 +89,3 @@ function searchCurrencyCode() {
     var currencyCodeInput = document.getElementById('currencyCode').value.trim();
     searchDisplay(currencyCodeInput);
 }
-
-// Allow ENTER key press to search country name
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('countryName').addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            searchCountryName();
-        }
-    });
-});
-
-// Allow ENTER key press to search currency code
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('currencyCode').addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            searchCurrencyCode();
-        }
-    });
-});
