@@ -29,7 +29,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-function searchDisplay(input) {
+function toggleContainerVisibility(visible) {
+    var container = document.querySelector('.container');
+    container.style.display = visible ? "block" : "none";
+}
+
+function searchDisplay(input, isCurrencySearch) {
     // Create an array to store matching elements
     var matchingCountries = [];
     var matchingCurrencyCodes = [];
@@ -39,7 +44,11 @@ function searchDisplay(input) {
         for (let i = 0; i < countryData.length; i++) {
             var country = countryData[i];
             var code = currencyCodeData[i];
-            if (country.toLowerCase().includes(input.toLowerCase())) {
+
+            if (isCurrencySearch && code.toLowerCase().includes(input.toLowerCase())) {
+                matchingCountries.push(country);
+                matchingCurrencyCodes.push(code);
+            } else if (!isCurrencySearch && country.toLowerCase().includes(input.toLowerCase())) {
                 matchingCountries.push(country);
                 matchingCurrencyCodes.push(code);
             }
@@ -57,8 +66,10 @@ function searchDisplay(input) {
 
     if (matchingCountries.length === 0 || input === "") {
         newContentDiv.style.display = "none"; // Hide the "new-content" div
+        toggleContainerVisibility(true); // Show the container
     } else {
         newContentDiv.style.display = "block"; // Show the "new-content" div
+        toggleContainerVisibility(false); // Hide the container
 
         matchingCountries.forEach(function (country, index) {
             // Create elements for the country data
@@ -81,11 +92,11 @@ function searchDisplay(input) {
 // Function to search the country name input
 function searchCountryName() {
     var countryNameInput = document.getElementById("countryName").value.trim();
-    searchDisplay(countryNameInput);
+    searchDisplay(countryNameInput, false);
 }
 
 // Function to search the currency code input
 function searchCurrencyCode() {
     var currencyCodeInput = document.getElementById('currencyCode').value.trim();
-    searchDisplay(currencyCodeInput);
+    searchDisplay(currencyCodeInput, true);
 }
