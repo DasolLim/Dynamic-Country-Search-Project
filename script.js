@@ -1,6 +1,8 @@
-// Store country names and currency codes
+// Store country names, currency codes, images, and regions
 var countryData = [];
 var currencyCodeData = [];
+var countryImages = [];
+var countryRegions = [];
 
 // DOMContentLoaded process web contents and prevent 'undefined' contents 
 document.addEventListener("DOMContentLoaded", function () {
@@ -11,33 +13,38 @@ document.addEventListener("DOMContentLoaded", function () {
     countryElements.forEach(countryElement => {
         var nameElement = countryElement.querySelector('.name');
         var currencyElement = countryElement.querySelector('.currency');
+        var imageElement = countryElement.querySelector('img');
+        var regionElement = countryElement.querySelector('.region');
 
-        // Store found country name or currency code
+        // Store found country data
         if (nameElement) {
             var name = nameElement.textContent.trim();
-
-            // Push the extracted data into the countryData array
             countryData.push(name);
         }
 
         if (currencyElement) {
             var currency = currencyElement.textContent.trim();
-
-            // Push the extracted data into the currencyCodeData array
             currencyCodeData.push(currency);
+        }
+
+        if (imageElement) {
+            var imageSrc = imageElement.src;
+            countryImages.push(imageSrc);
+        }
+
+        if (regionElement) {
+            var region = regionElement.textContent.trim();
+            countryRegions.push(region);
         }
     });
 });
-
-function toggleContainerVisibility(visible) {
-    var container = document.querySelector('.container');
-    container.style.display = visible ? "block" : "none";
-}
 
 function searchDisplay(input, isCurrencySearch) {
     // Create an array to store matching elements
     var matchingCountries = [];
     var matchingCurrencyCodes = [];
+    var matchingImages = [];
+    var matchingRegions = [];
 
     // Check for matches and add
     if (!input == "") {
@@ -48,9 +55,13 @@ function searchDisplay(input, isCurrencySearch) {
             if (isCurrencySearch && code.toLowerCase().includes(input.toLowerCase())) {
                 matchingCountries.push(country);
                 matchingCurrencyCodes.push(code);
+                matchingImages.push(countryImages[i]);
+                matchingRegions.push(countryRegions[i]);
             } else if (!isCurrencySearch && country.toLowerCase().includes(input.toLowerCase())) {
                 matchingCountries.push(country);
                 matchingCurrencyCodes.push(code);
+                matchingImages.push(countryImages[i]);
+                matchingRegions.push(countryRegions[i]);
             }
 
             // Ensure a maximum of 5 matches
@@ -66,22 +77,23 @@ function searchDisplay(input, isCurrencySearch) {
 
     if (matchingCountries.length === 0 || input === "") {
         newContentDiv.style.display = "none"; // Hide the "new-content" div
-        toggleContainerVisibility(true); // Show the container
     } else {
         newContentDiv.style.display = "block"; // Show the "new-content" div
-        toggleContainerVisibility(false); // Hide the container
 
         matchingCountries.forEach(function (country, index) {
             // Create elements for the country data
             var countryDiv = document.createElement("div");
+            var countryImage = document.createElement("img");
             var countryName = document.createElement("h3");
             var countryDescription = document.createElement("p");
 
             // Set content
+            countryImage.src = matchingImages[index];
             countryName.textContent = country;
-            countryDescription.textContent = "Currency Code: " + matchingCurrencyCodes[index];
+            countryDescription.textContent = "Currency Code: " + matchingCurrencyCodes[index] + "\nRegion(s): " + matchingRegions[index];
 
             // Append elements to the "new-content" div
+            countryDiv.appendChild(countryImage);
             countryDiv.appendChild(countryName);
             countryDiv.appendChild(countryDescription);
             newContentDiv.appendChild(countryDiv);
