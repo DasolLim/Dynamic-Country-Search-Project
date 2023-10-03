@@ -3,6 +3,7 @@ var countryData = [];
 var currencyCodeData = [];
 var countryImages = [];
 var countryRegions = [];
+var countryLinks = [];
 
 // DOMContentLoaded process web contents and prevent 'undefined' contents 
 document.addEventListener("DOMContentLoaded", function () {
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var currencyElement = countryElement.querySelector('.currency');
         var imageElement = countryElement.querySelector('img');
         var regionElement = countryElement.querySelector('.region');
+        var linkElement = nameElement.querySelector('a'); // Get the link element
 
         // Store found country data
         if (nameElement) {
@@ -36,6 +38,11 @@ document.addEventListener("DOMContentLoaded", function () {
             var region = regionElement.textContent.trim();
             countryRegions.push(region);
         }
+
+        if (linkElement) {
+            var link = linkElement.href; // Get the link URL
+            countryLinks.push(link);
+        }
     });
 });
 
@@ -45,6 +52,7 @@ function searchDisplay(input, isCurrencySearch) {
     var matchingCurrencyCodes = [];
     var matchingImages = [];
     var matchingRegions = [];
+    var matchingLinks = [];
 
     // Check for matches and add
     if (!input == "") {
@@ -57,11 +65,13 @@ function searchDisplay(input, isCurrencySearch) {
                 matchingCurrencyCodes.push(code);
                 matchingImages.push(countryImages[i]);
                 matchingRegions.push(countryRegions[i]);
+                matchingLinks.push(countryLinks[i]);
             } else if (!isCurrencySearch && country.toLowerCase().includes(input.toLowerCase())) {
                 matchingCountries.push(country);
                 matchingCurrencyCodes.push(code);
                 matchingImages.push(countryImages[i]);
                 matchingRegions.push(countryRegions[i]);
+                matchingLinks.push(countryLinks[i]);
             }
 
             // Ensure a maximum of 5 matches
@@ -83,13 +93,19 @@ function searchDisplay(input, isCurrencySearch) {
         matchingCountries.forEach(function (country, index) {
             // Create elements for the country data
             var countryDiv = document.createElement("div");
+            countryDiv.id = "dynamic-div"; // Set the id to "dynamic-div"
             var countryImage = document.createElement("img");
             var countryName = document.createElement("h3");
             var countryDescription = document.createElement("p");
 
+            // Create a link element
+            var countryLink = document.createElement("a");
+            countryLink.href = matchingLinks[index]; // Set the link URL
+            countryLink.textContent = country;
+
             // Set content
             countryImage.src = matchingImages[index];
-            countryName.textContent = country;
+            countryName.appendChild(countryLink); // Append the link to the h3 element
             countryDescription.textContent = "Currency Code: " + matchingCurrencyCodes[index] + "\nRegion(s): " + matchingRegions[index];
 
             // Append elements to the "new-content" div
