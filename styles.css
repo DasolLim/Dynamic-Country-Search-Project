@@ -1,3 +1,15 @@
+/* Background */
+.wrapper {
+    background-image: url(background_image/se3309_background_image.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 97vw;
+    height: 97vw;
+    color: white;
+}
+
+/* Title */
 h1 {
     padding-top: 10px;
     text-align: center;
@@ -6,21 +18,17 @@ h1 {
     font-size: 48px;
 }
 
-.region-text {
-    font-weight: bold;
+.header-container {
+    background-color: transparent;
 }
 
-.country {
-    margin-bottom: 15px;
-    padding-left: 15px;
-    padding-bottom: 15px;
+.search-container {
+    top: 15px;
+    text-align: right;
+    vertical-align: middle;
 }
 
-.countryList {
-    list-style: none;
-    font-size: 16px;
-}
-
+/* Search input textbox */
 #countryName,
 #currencyCode {
     width: 300px;
@@ -30,26 +38,10 @@ h1 {
     transition: all 0.2s ease-in-out 0s;
     font-size: 16px;
     font-weight: normal;
-}
-
-button {
-    min-height: 24px;
-    padding-bottom: 2px;
-}
-
-/*
-button:hover {
-    font-weight: bold;
-    color: rgb(0, 102, 255);
-    background-color: white;
-}
-*/
-
-#countryName,
-#currencyCode {
     background-color: rgba(255, 255, 255, 0.25);
 }
 
+/* Search input textbox clicked */
 #countryName:focus,
 #currencyCode:focus {
     outline: none;
@@ -68,31 +60,33 @@ button:hover {
     padding-bottom: 15px;
 }
 
-.search-container {
-    top: 15px;
-    text-align: right;
-    vertical-align: middle;
+.countryList {
+    list-style: none;
+    font-size: 16px;
 }
 
-.header-container {
-    /*background-color: rgb(0, 102, 255);*/
-    background-color: transparent;
+.country {
+    margin-bottom: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+}
+
+.region-text {
+    font-weight: bold;
 }
 
 ul {
     padding-inline-start: 0px;
 }
 
+/* Even list */
 li {
-    /*background: rgb(54, 134, 255);*/
-    /*background-color: transparent;*/
     background-color: rgba(0, 0, 0, 0.15);
     box-shadow: 3px 2px 10px 1px #ffffff;
 }
 
+/* Odd list */
 li:nth-child(odd) {
-    /*background: rgb(125, 177, 255);*/
-    /*background-color: transparent;*/
     background-color: rgba(255, 255, 255, 0.15);
     box-shadow: 3px 2px 10px 1px #ffffff;
 }
@@ -106,9 +100,12 @@ a:hover {
     color: #fffbc8;
 }
 
+#display-result {
+    margin-top: 16px;
+}
+
+/* Even dynamic div */
 #dynamic-div {
-    /*background-color: rgb(0, 156, 156);*/
-    /*background-color: transparent;*/
     background-color: rgba(255, 245, 158, 0.35);
     box-shadow: 3px 2px 10px 1px rgb(255, 245, 158);
     margin-bottom: 15px;
@@ -116,32 +113,18 @@ a:hover {
     padding-bottom: 15px;
 }
 
+/* Odd dynamic div */
 #dynamic-div:nth-child(odd) {
-    /*background: cyan;*/
-    /*background-color: transparent;*/
     background-color: rgba(255, 215, 0, 0.15);
     box-shadow: 3px 2px 10px 1px rgb(255, 215, 0);
 }
 
-/*background*/
-.wrapper {
-    background-image: url(background_image/se3309_background_image.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    width: 97vw;
-    height: 97vw;
-    color: white;
-}
-
-#display-result {
-    margin-top: 16px;
-}
-
+/* New-content div font size*/
 #new-content {
     font-size: 16px;
 }
 
+/* Country name style*/
 #dynamic-country-name {
     font-weight: bold;
 }

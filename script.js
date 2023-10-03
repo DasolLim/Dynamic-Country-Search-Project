@@ -1,77 +1,81 @@
 // Store country names, currency codes, images, and regions
-var countryData = [];
-var currencyCodeData = [];
-var countryImages = [];
-var countryRegions = [];
-var countryLinks = [];
+let countryData = [];
+let currencyCodeData = [];
+let countryLinks = [];
+let countryImages = [];
+let countryRegions = [];
 
 // DOMContentLoaded process web contents and prevent 'undefined' contents 
 document.addEventListener("DOMContentLoaded", function () {
     // Select all class name "country"
-    var countryElements = document.querySelectorAll('.country');
+    let countryElements = document.querySelectorAll('.country');
 
     // Loop through the country elements
     countryElements.forEach(countryElement => {
-        var nameElement = countryElement.querySelector('.name');
-        var currencyElement = countryElement.querySelector('.currency');
-        var imageElement = countryElement.querySelector('img');
-        var regionElement = countryElement.querySelector('.region');
-        var linkElement = nameElement.querySelector('a'); // Get the link element
+        let nameElement = countryElement.querySelector('.name');
+        let currencyElement = countryElement.querySelector('.currency');
+        let linkElement = nameElement.querySelector('a');
+        let imageElement = countryElement.querySelector('img');
+        let regionElement = countryElement.querySelector('.region');
 
         // Store found country data
         if (nameElement) {
-            var name = nameElement.textContent.trim();
+            let name = nameElement.textContent.trim();
             countryData.push(name);
         }
 
         if (currencyElement) {
-            var currency = currencyElement.textContent.trim();
+            let currency = currencyElement.textContent.trim();
             currencyCodeData.push(currency);
         }
 
+        if (linkElement) {
+            let link = linkElement.href;
+            countryLinks.push(link);
+        }
+
         if (imageElement) {
-            var imageSrc = imageElement.src;
+            let imageSrc = imageElement.src;
             countryImages.push(imageSrc);
         }
 
         if (regionElement) {
-            var region = regionElement.textContent.trim();
+            let region = regionElement.textContent.trim();
             countryRegions.push(region);
-        }
-
-        if (linkElement) {
-            var link = linkElement.href; // Get the link URL
-            countryLinks.push(link);
         }
     });
 });
 
-function searchDisplay(input, isCurrencySearch) {
+function searchDisplay(input, searchType) {
     // Create an array to store matching elements
-    var matchingCountries = [];
-    var matchingCurrencyCodes = [];
-    var matchingImages = [];
-    var matchingRegions = [];
-    var matchingLinks = [];
+    let matchingCountries = [];
+    let matchingCurrencyCodes = [];
+    let matchingImages = [];
+    let matchingRegions = [];
+    let matchingLinks = [];
 
     // Check for matches and add
     if (!input == "") {
         for (let i = 0; i < countryData.length; i++) {
-            var country = countryData[i];
-            var code = currencyCodeData[i];
+            let country = countryData[i];
+            let code = currencyCodeData[i];
 
-            if (isCurrencySearch && code.toLowerCase().includes(input.toLowerCase())) {
+            // Currency code search operation
+            if (searchType && code.toLowerCase().includes(input.toLowerCase())) {
+                //Pushing country name, link, currency code, image, and region
                 matchingCountries.push(country);
+                matchingLinks.push(countryLinks[i]);
                 matchingCurrencyCodes.push(code);
                 matchingImages.push(countryImages[i]);
                 matchingRegions.push(countryRegions[i]);
-                matchingLinks.push(countryLinks[i]);
-            } else if (!isCurrencySearch && country.toLowerCase().includes(input.toLowerCase())) {
+                // Country name search operation
+            } else if (!searchType && country.toLowerCase().includes(input.toLowerCase())) {
+                //Pushing country name, link, currency code, image, and region
                 matchingCountries.push(country);
+                matchingLinks.push(countryLinks[i]);
                 matchingCurrencyCodes.push(code);
                 matchingImages.push(countryImages[i]);
                 matchingRegions.push(countryRegions[i]);
-                matchingLinks.push(countryLinks[i]);
             }
 
             // Ensure a maximum of 5 matches
@@ -82,34 +86,38 @@ function searchDisplay(input, isCurrencySearch) {
     }
 
     // Display results in the "new-content" div
-    var newContentDiv = document.getElementById("new-content");
+    let newContentDiv = document.getElementById("new-content");
     newContentDiv.innerHTML = "";
 
     if (matchingCountries.length === 0 || input === "") {
-        newContentDiv.style.display = "none"; // Hide the "new-content" div
+        // Remove/hide the "new-content" div
+        newContentDiv.style.display = "none";
     } else {
-        newContentDiv.style.display = "block"; // Show the "new-content" div
+        // Display/show the "new-content" div
+        newContentDiv.style.display = "block";
 
         matchingCountries.forEach(function (country, index) {
             // Create elements for the country data
-            var countryDiv = document.createElement("div");
-            countryDiv.id = "dynamic-div"; // Set the id to "dynamic-div"
-            var countryImage = document.createElement("img");
-            var countryName = document.createElement("h2");
+            let countryDiv = document.createElement("div");
+            let countryImage = document.createElement("img");
+            let countryName = document.createElement("h2");
+            let countryCurrency = document.createElement("p");
+            let countryDescription = document.createElement("span");
+
+            // Create element id for the country data
+            countryDiv.id = "dynamic-div";
             countryName.id = "dynamic-country-name";
-            var countryCurrency = document.createElement("p");
             countryCurrency.id = "dynamic-currency";
-            var countryDescription = document.createElement("span");
             countryDescription.id = "dynamic-region-names";
 
             // Create a link element
-            var countryLink = document.createElement("a");
-            countryLink.href = matchingLinks[index]; // Set the link URL
+            let countryLink = document.createElement("a");
+            countryLink.href = matchingLinks[index];
             countryLink.textContent = country;
 
-            // Set content
+            // Set "new-content" div content
             countryImage.src = matchingImages[index];
-            countryName.appendChild(countryLink); // Append the link to the h3 element
+            countryName.appendChild(countryLink);
             countryCurrency.textContent = matchingCurrencyCodes[index]
             countryDescription.textContent = "Region(s): " + matchingRegions[index];
 
@@ -125,12 +133,12 @@ function searchDisplay(input, isCurrencySearch) {
 
 // Function to search the country name input
 function searchCountryName() {
-    var countryNameInput = document.getElementById("countryName").value.trim();
+    let countryNameInput = document.getElementById("countryName").value.trim();
     searchDisplay(countryNameInput, false);
 }
 
 // Function to search the currency code input
 function searchCurrencyCode() {
-    var currencyCodeInput = document.getElementById('currencyCode').value.trim();
+    let currencyCodeInput = document.getElementById('currencyCode').value.trim();
     searchDisplay(currencyCodeInput, true);
 }
