@@ -95,8 +95,12 @@ function searchDisplay(input, isCurrencySearch) {
             var countryDiv = document.createElement("div");
             countryDiv.id = "dynamic-div"; // Set the id to "dynamic-div"
             var countryImage = document.createElement("img");
-            var countryName = document.createElement("h3");
-            var countryDescription = document.createElement("p");
+            var countryName = document.createElement("h2");
+            countryName.id = "dynamic-country-name";
+            var countryCurrency = document.createElement("p");
+            countryCurrency.id = "dynamic-currency";
+            var countryDescription = document.createElement("span");
+            countryDescription.id = "dynamic-region-names";
 
             // Create a link element
             var countryLink = document.createElement("a");
@@ -106,11 +110,13 @@ function searchDisplay(input, isCurrencySearch) {
             // Set content
             countryImage.src = matchingImages[index];
             countryName.appendChild(countryLink); // Append the link to the h3 element
-            countryDescription.textContent = "Currency Code: " + matchingCurrencyCodes[index] + "\nRegion(s): " + matchingRegions[index];
+            countryCurrency.textContent = matchingCurrencyCodes[index]
+            countryDescription.textContent = "Region(s): " + matchingRegions[index];
 
             // Append elements to the "new-content" div
             countryDiv.appendChild(countryImage);
             countryDiv.appendChild(countryName);
+            countryDiv.appendChild(countryCurrency);
             countryDiv.appendChild(countryDescription);
             newContentDiv.appendChild(countryDiv);
         });
