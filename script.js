@@ -77,35 +77,33 @@ function searchDisplay(input, searchType) {
                 matchingImages.push(countryImages[i]);
                 matchingRegions.push(countryRegions[i]);
             }
-
-            // Ensure a maximum of 5 matches
-            if (matchingCountries.length >= 5) {
-                break;
-            }
         }
     }
 
     // Display results in the "new-content" div
+    let displayTitle = document.getElementById("display-title");
     let newContentDiv = document.getElementById("new-content");
     newContentDiv.innerHTML = "";
 
     if (matchingCountries.length === 0 || input === "") {
-        // Remove/hide the "new-content" div
+        // Remove/hide the "new-content" div and "display-title" h2
         newContentDiv.style.display = "none";
+        displayTitle.style.display = "none";
     } else {
-        // Display/show the "new-content" div
+        // Display/show the "new-content" div and "display-title" h2
         newContentDiv.style.display = "block";
+        displayTitle.style.display = "block";
 
         matchingCountries.forEach(function (country, index) {
             // Create elements for the country data
-            let countryDiv = document.createElement("div");
+            let countryList = document.createElement("li");
             let countryImage = document.createElement("img");
             let countryName = document.createElement("h2");
             let countryCurrency = document.createElement("p");
             let countryDescription = document.createElement("span");
 
             // Create element id for the country data
-            countryDiv.id = "dynamic-div";
+            countryList.id = "dynamic-list";
             countryName.id = "dynamic-country-name";
             countryCurrency.id = "dynamic-currency";
             countryDescription.id = "dynamic-region-names";
@@ -118,15 +116,15 @@ function searchDisplay(input, searchType) {
             // Set "new-content" div content
             countryImage.src = matchingImages[index];
             countryName.appendChild(countryLink);
-            countryCurrency.textContent = matchingCurrencyCodes[index]
+            countryCurrency.textContent = "Currency: " + matchingCurrencyCodes[index]
             countryDescription.textContent = "Region(s): " + matchingRegions[index];
 
             // Append elements to the "new-content" div
-            countryDiv.appendChild(countryImage);
-            countryDiv.appendChild(countryName);
-            countryDiv.appendChild(countryCurrency);
-            countryDiv.appendChild(countryDescription);
-            newContentDiv.appendChild(countryDiv);
+            countryList.appendChild(countryImage);
+            countryList.appendChild(countryName);
+            countryList.appendChild(countryCurrency);
+            countryList.appendChild(countryDescription);
+            newContentDiv.appendChild(countryList);
         });
     }
 }
