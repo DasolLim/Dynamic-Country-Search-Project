@@ -1,60 +1,96 @@
-function searchDisplay(input, isCurrencySearch) {
+// Function to display search results
+function searchDisplay(text, searchType) {
+    // Select display title element
     let displayTitle = document.getElementById("display-title");
 
-    // Create a document fragment to store matching elements
+    // Create a dynamic list container with id
     let dynamicList = document.createElement('div');
     dynamicList.id = "dynamic-list";
 
-    // Keep track of added country names to prevent duplicates
+    // Create an array to prevent duplicates
     var addedCountries = [];
 
-    // Check for matches and add
-    if (!input == "") {
-        var countryElements = document.querySelectorAll('.country');
+    // Select all elements with the class "country"
+    var countryElements = document.querySelectorAll('.country');
 
-        for (let i = 0; i < countryElements.length; i++) {
-            var countryElement = countryElements[i];
-            var nameElement = countryElement.querySelector('.name');
-            var currencyElement = countryElement.querySelector('.currency');
-            var name = nameElement.textContent.trim();
-            var code = currencyElement.textContent.trim();
+    // Select "new-content" div where dynamic search is displayed
+    var newContentDiv = document.getElementById("new-content");
 
-            if ((isCurrencySearch && code.toLowerCase().includes(input.toLowerCase())) ||
-                (!isCurrencySearch && name.toLowerCase().includes(input.toLowerCase()))) {
+    // Remove all child nodes from newContentDiv
+    while (newContentDiv.firstChild) {
+        newContentDiv.removeChild(newContentDiv.firstChild);
+    }
 
-                // Check if the country has already been added
-                if (addedCountries.indexOf(name) === -1) {
-                    // Clone the country element and add it to the fragment
-                    var clonedCountry = countryElement.cloneNode(true);
-                    dynamicList.appendChild(clonedCountry);
-                    addedCountries.push(name);
-                }
+    // Loop through all country elements
+    for (let i = 0; i < countryElements.length; i++) {
+        var countryElement = countryElements[i];
+        var nameElement = countryElement.querySelector('.name');
+        var currencyElement = countryElement.querySelector('.currency');
+        var name = nameElement.textContent.trim();
+        var code = currencyElement.textContent.trim();
+
+        // Check if the input matches either the currency code or country name
+        if ((searchType && code.toLowerCase().includes(text.toLowerCase())) ||
+            (!searchType && name.toLowerCase().includes(text.toLowerCase()))) {
+            // Check if the country has not already been added
+            if (addedCountries.indexOf(name) === -1) {
+                // Clone the country element and add it to the dynamic list
+                var clonedCountry = countryElement.cloneNode(true);
+                dynamicList.appendChild(clonedCountry);
+                addedCountries.push(name);
             }
         }
     }
 
-    // Display results in the "new-content" div
-    var newContentDiv = document.getElementById("new-content");
-    newContentDiv.innerHTML = "";
-
-    if (dynamicList.childNodes.length === 0 || input === "") {
-        newContentDiv.style.display = "none"; // Hide the "new-content" div
-        displayTitle.style.display = "none"; // Hide the "display-title" div
+    // Hide newContentDiv when there are no matching elements or input is empty
+    if (dynamicList.childNodes.length === 0) {
+        newContentDiv.style.display = "none";
+        displayTitle.style.display = "none";
     } else {
-        newContentDiv.style.display = "block"; // Show the "new-content" div
-        displayTitle.style.display = "block"; // Show the "display-title" div
-        newContentDiv.appendChild(dynamicList); // Append the cloned elements
+        // Show newContentDiv and append dynamicList as a child
+        newContentDiv.style.display = "block";
+        displayTitle.style.display = "block";
+        newContentDiv.appendChild(dynamicList);
     }
 }
 
-// Function to search the country name input
+// Function to search by country name
 function searchCountryName() {
     var countryNameInput = document.getElementById("countryName").value.trim();
-    searchDisplay(countryNameInput, false);
+
+    // Check if the input is empty
+    if (countryNameInput === "") {
+        // Clear and hide newContentDiv and displayTitle
+        var newContentDiv = document.getElementById("new-content");
+        while (newContentDiv.firstChild) {
+            newContentDiv.removeChild(newContentDiv.firstChild);
+        }
+        newContentDiv.style.display = "none";
+        var displayTitle = document.getElementById("display-title");
+        displayTitle.style.display = "none";
+    } else {
+        // Perform a dynamic search based on the input
+        searchDisplay(countryNameInput, false);
+    }
 }
 
-// Function to search the currency code input
+// Function to search by currency code
 function searchCurrencyCode() {
     var currencyCodeInput = document.getElementById('currencyCode').value.trim();
-    searchDisplay(currencyCodeInput, true);
+
+    // Check if the input has 3 uppercase letters and no numbers
+    var currencyCodePattern = /^[A-Z]{3}$/;
+    if (currencyCodePattern.test(currencyCodeInput)) {
+        // Dynamic search for currencyCode
+        searchDisplay(currencyCodeInput, true);
+    } else {
+        // Clear and hide newContentDiv and displayTitle
+        var newContentDiv = document.getElementById("new-content");
+        while (newContentDiv.firstChild) {
+            newContentDiv.removeChild(newContentDiv.firstChild);
+        }
+        newContentDiv.style.display = "none";
+        var displayTitle = document.getElementById("display-title");
+        displayTitle.style.display = "none";
+    }
 }
