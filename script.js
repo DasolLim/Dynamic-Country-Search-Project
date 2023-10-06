@@ -1,105 +1,96 @@
-// Store country names and currency codes
-var countryData = [];
-var currencyCodeData = [];
+// Function to display search results
+function searchDisplay(text, searchType) {
+    // Select display title element
+    let displayTitle = document.getElementById("display-title");
 
-// DOMContentLoaded process web contents and prevent 'undefined' contents 
-document.addEventListener("DOMContentLoaded", function () {
+    // Create a dynamic list container with id
+    let dynamicList = document.createElement('div');
+    dynamicList.id = "dynamic-list";
 
-    // Select all class name "country"
+    // Create an array to prevent duplicates
+    var addedCountries = [];
+
+    // Select all elements with the class "country"
     var countryElements = document.querySelectorAll('.country');
 
-    // Loop through the country elements
-    countryElements.forEach(countryElement => {
+    // Select "new-content" div where dynamic search is displayed
+    var newContentDiv = document.getElementById("new-content");
+
+    // Remove all child nodes from newContentDiv
+    while (newContentDiv.firstChild) {
+        newContentDiv.removeChild(newContentDiv.firstChild);
+    }
+
+    // Loop through all country elements
+    for (let i = 0; i < countryElements.length; i++) {
+        var countryElement = countryElements[i];
         var nameElement = countryElement.querySelector('.name');
         var currencyElement = countryElement.querySelector('.currency');
+        var name = nameElement.textContent.trim();
+        var code = currencyElement.textContent.trim();
 
-        // Store found country name or currency code
-        if (nameElement) {
-            var name = nameElement.textContent.trim();
-
-            // Push the extracted data into the countryData array
-            countryData.push(name);
-        }
-
-        if (currencyElement) {
-            var currency = currencyElement.textContent.trim();
-
-            // Push the extracted data into the currencyCodeData array
-            currencyCodeData.push(currency);
-        }
-    });
-
-});
-
-function searchDisplay(input) {
-    // Create an array to store matching elements
-    var matchingCountries = [];
-    var matchingCurrencyCodes = [];
-
-    // Check for matches and add
-    if (!countryName == "") {
-        for (let i = 0; i < 20; i++) {
-            var country = countryData[i];
-            var code = currencyCodeData[i];
-            if (country.toLowerCase().includes(input.toLowerCase())) {
-                matchingCountries.push(country);
-                matchingCurrencyCodes.push(code);
-            }
-
-            // Ensure maximum 5 matches
-            if (matchingCountries.length >= 5) {
-                break;
+        // Check if the input matches either the currency code or country name
+        if ((searchType && code.toLowerCase().includes(text.toLowerCase())) ||
+            (!searchType && name.toLowerCase().includes(text.toLowerCase()))) {
+            // Check if the country has not already been added
+            if (addedCountries.indexOf(name) === -1) {
+                // Clone the country element and add it to the dynamic list
+                var clonedCountry = countryElement.cloneNode(true);
+                dynamicList.appendChild(clonedCountry);
+                addedCountries.push(name);
             }
         }
     }
 
-    // Display alert
-    if (matchingCountries.length > 0) {
-        var alertMessage = "";
-        for (var i = 0; i < matchingCountries.length; i++) {
-            alertMessage += "Country Found: " + matchingCountries[i] + "\n" + "Currency Found: " + matchingCurrencyCodes[i] + "\n\n";
-        }
-        alert(alertMessage);
+    // Hide newContentDiv when there are no matching elements or input is empty
+    if (dynamicList.childNodes.length === 0) {
+        newContentDiv.style.display = "none";
+        displayTitle.style.display = "none";
     } else {
-        alert("No matching countries found.");
+        // Show newContentDiv and append dynamicList as a child
+        newContentDiv.style.display = "block";
+        displayTitle.style.display = "block";
+        newContentDiv.appendChild(dynamicList);
     }
-
-    /*
-    // Check if the input is longer than 20 characters
-    if (countryName.length > 20) {
-        alert('Error: Country name should be no more than 20 characters');
-    }
-    */
 }
 
-// Function to search the country name input
+// Function to search by country name
 function searchCountryName() {
     var countryNameInput = document.getElementById("countryName").value.trim();
-    searchDisplay(countryNameInput);
+
+    // Check if the input is empty
+    if (countryNameInput === "") {
+        // Clear and hide newContentDiv and displayTitle
+        var newContentDiv = document.getElementById("new-content");
+        while (newContentDiv.firstChild) {
+            newContentDiv.removeChild(newContentDiv.firstChild);
+        }
+        newContentDiv.style.display = "none";
+        var displayTitle = document.getElementById("display-title");
+        displayTitle.style.display = "none";
+    } else {
+        // Perform a dynamic search based on the input
+        searchDisplay(countryNameInput, false);
+    }
 }
 
-// Function to search the currency code input
+// Function to search by currency code
 function searchCurrencyCode() {
     var currencyCodeInput = document.getElementById('currencyCode').value.trim();
-    searchDisplay(currencyCodeInput);
+
+    // Check if the input has 3 uppercase letters and no numbers
+    var currencyCodePattern = /^[A-Z]{3}$/;
+    if (currencyCodePattern.test(currencyCodeInput)) {
+        // Dynamic search for currencyCode
+        searchDisplay(currencyCodeInput, true);
+    } else {
+        // Clear and hide newContentDiv and displayTitle
+        var newContentDiv = document.getElementById("new-content");
+        while (newContentDiv.firstChild) {
+            newContentDiv.removeChild(newContentDiv.firstChild);
+        }
+        newContentDiv.style.display = "none";
+        var displayTitle = document.getElementById("display-title");
+        displayTitle.style.display = "none";
+    }
 }
-
-// Allow ENTER key press to search country name
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('countryName').addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            searchCountryName();
-        }
-    });
-});
-
-// Allow ENTER key press to search currency code
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('currencyCode').addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            searchCurrencyCode();
-        }
-    });
-});

@@ -3,38 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SE3316 Lab 1</title>
+    <title>SE3316 Lab 2</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
 </head>
 
-<body>
-    <h1>SE3316 LAB 1</h1>
+<body class="wrapper">
+    
+    <h1>SE3316 LAB 2</h1>
 
     <!-- Search boxes -->
     <header class="header-container">
         <div class="search-container">
             <div class="country-search-container">
-                <input type="text" id="countryName" placeholder="Search Country Name .." maxlength="20">
-                <button onclick="searchCountryName()">Search</button>
+                <input type="text" id="countryName" placeholder="Search Country Name .." maxlength="20" oninput="searchCountryName()">
             </div>
             <div class="currency-search-container">
-                <input type="text" id="currencyCode" placeholder="Search Currency Code .." maxlength="3">
-                <button onclick="searchCurrencyCode()">Search</button>
+                <input type="text" id="currencyCode" placeholder="Search Currency Code .." maxlength="3" oninput="searchCurrencyCode()">
             </div>
         </div>
     </header>
+
+    <!-- Dynamically update this list -->
+    <div id="display-result">
+        <!-- Dynamic Search Title -->
+        <h2 id="display-title">Dynamic Search Result(s)</h2>
+        <!-- Create a new content block -->
+        <div id="new-content">
+            <!-- Dynamically create a new list with list elements -->
+        </div>
+    </div>
 
     <div class="container">
         <ul class="countryList">
             <!--country 1-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\us.png" alt="USA flag">
+                <img src="country_flags/us.png" alt="USA flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/United_States" target="_blank">United States of America</a></h2>
-                    <p class="currency"><b>Currency: </b> USD</p>
+                    <span><b>Currency: </b></span><span class="currency">USD</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Alabama, 
@@ -95,11 +105,12 @@
             <!--country 2-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\ca.png" alt="Canada flag">
+                <img src="country_flags/ca.png" alt="Canada flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Canada" target="_blank">Canada</a></h2>
-                    <p class="currency"><b>Currency: </b> CAD</p>
+                    <span><b>Currency: </b></span><span class="currency">CAD</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Alberta, 
@@ -122,11 +133,12 @@
             <!--country 3-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\mx.png" alt="Mexico flag">
+                <img src="country_flags/mx.png" alt="Mexico flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Mexico" target="_blank">Mexico</a></h2>
-                    <p class="currency"><b>Currency: </b> MXN</p>
+                    <span><b>Currency: </b></span><span class="currency">MXN</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Aguascalientes, 
@@ -168,11 +180,12 @@
             <!--country 4-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\br.png" alt="Brazil flag">
+                <img src="country_flags/br.png" alt="Brazil flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Brazil" target="_blank">Brazil</a></h2>
-                    <p class="currency"><b>Currency: </b> BRL</p>
+                    <span><b>Currency: </b></span><span class="currency">BRL</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Acre, 
@@ -209,11 +222,12 @@
             <!--country 5-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\ar.png" alt="Argentina flag">
+                <img src="country_flags/ar.png" alt="Argentina flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Argentina" target="_blank">Argentina</a></h2>
-                    <p class="currency"><b>Currency: </b> ARS</p>
+                    <span><b>Currency: </b></span><span class="currency">ARS</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Buenos Aires, 
@@ -247,11 +261,12 @@
             <!--country 6-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\ht.png" alt="Haiti flag">
+                <img src="country_flags/ht.png" alt="Haiti flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Haiti" target="_blank">Haiti</a></h2>
-                    <p class="currency"><b>Currency: </b> HTG</p>
+                    <span><b>Currency: </b></span><span class="currency">HTG</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Artibonite, 
@@ -269,11 +284,12 @@
             <!--country 7-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\fr.png" alt="France flag">
+                <img src="country_flags/fr.png" alt="France flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/France" target="_blank">France</a></h2>
-                    <p class="currency"><b>Currency: </b> EUR</p>
+                    <span><b>Currency: </b></span><span class="currency">EUR</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Auvergne-Rhone-Alpes, 
@@ -296,11 +312,12 @@
             <!--country 8-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\de.png" alt="Germany flag">
+                <img src="country_flags/de.png" alt="Germany flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Germany" target="_blank">Germany</a></h2>
-                    <p class="currency"><b>Currency: </b> EUR</p>
+                    <span><b>Currency: </b></span><span class="currency">EUR</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Baden-Wurttemberg, 
@@ -326,11 +343,12 @@
             <!--country 9-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\ru.png" alt="Russia flag">
+                <img src="country_flags/ru.png" alt="Russia flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Russia" target="_blank">Russian Federation</a></h2>
-                    <p class="currency"><b>Currency: </b> RUB</p>
+                    <span><b>Currency: </b></span><span class="currency">RUB</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Adygeya, Respublika, 
@@ -423,11 +441,12 @@
             <!--country 10-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\cn.png" alt="China flag">
+                <img src="country_flags/cn.png" alt="China flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/China" target="_blank">China</a></h2>
-                    <p class="currency"><b>Currency: </b> CNY</p>
+                    <span><b>Currency: </b></span><span class="currency">CNY</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Anhui, 
@@ -468,11 +487,12 @@
             <!--country 11-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\jp.png" alt="Japan flag">
+                <img src="country_flags/jp.png" alt="Japan flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Japan" target="_blank">Japan</a></h2>
-                    <p class="currency"><b>Currency: </b> JPY</p>
+                    <span><b>Currency: </b></span><span class="currency">JPY</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Aichi, 
@@ -529,11 +549,12 @@
             <!--country 12-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\gr.png" alt="Greece flag">
+                <img src="country_flags/gr.png" alt="Greece flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Greece" target="_blank">Greece</a></h2>
-                    <p class="currency"><b>Currency: </b> EUR</p>
+                    <span><b>Currency: </b></span><span class="currency">EUR</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Anatoliki Makedonia kai Thraki, 
@@ -556,11 +577,12 @@
             <!--country 13-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\za.png" alt="South Africa flag">
+                <img src="country_flags/za.png" alt="South Africa flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/South_Africa" target="_blank">South Africa</a></h2>
-                    <p class="currency"><b>Currency: </b> ZAR</p>
+                    <span><b>Currency: </b></span><span class="currency">ZAR</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Eastern Cape, 
@@ -579,11 +601,12 @@
             <!--country 14-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\ng.png" alt="Nigeria flag">
+                <img src="country_flags/ng.png" alt="Nigeria flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Nigeria" target="_blank">Nigeria</a></h2>
-                    <p class="currency"><b>Currency: </b> NGN</p>
+                    <span><b>Currency: </b></span><span class="currency">NGN</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Abia, 
@@ -630,11 +653,12 @@
             <!--country 15-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\au.png" alt="Australia flag">
+                <img src="country_flags/au.png" alt="Australia flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Australia" target="_blank">Australia</a></h2>
-                    <p class="currency"><b>Currency: </b> AUD</p>
+                    <span><b>Currency: </b></span><span class="currency">AUD</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Australian Capital Territory, 
@@ -652,11 +676,12 @@
             <!--country 16-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\eg.png" alt="Egypt flag">
+                <img src="country_flags/eg.png" alt="Egypt flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Egypt" target="_blank">Egypt</a></h2>
-                    <p class="currency"><b>Currency: </b> EGP</p>
+                    <span><b>Currency: </b></span><span class="currency">EGP</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Ad Daqahliyah, 
@@ -693,11 +718,12 @@
             <!--country 17-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\sa.png" alt="Saudi Arabia flag">
+                <img src="country_flags/sa.png" alt="Saudi Arabia flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Saudi_Arabia" target="_blank">Saudi Arabia</a></h2>
-                    <p class="currency"><b>Currency: </b> SAR</p>
+                    <span><b>Currency: </b></span><span class="currency">SAR</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Asir, 
@@ -720,11 +746,12 @@
             <!--country 18-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\it.png" alt="Italy flag">
+                <img src="country_flags/it.png" alt="Italy flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Italy" target="_blank">Italy</a></h2>
-                    <p class="currency"><b>Currency: </b> EUR</p>
+                    <span><b>Currency: </b></span><span class="currency">EUR</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Abruzzo, 
@@ -754,11 +781,12 @@
             <!--country 19-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\nz.png" alt="New Zealand flag">
+                <img src="country_flags/nz.png" alt="New Zealand flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/New_Zealand" target="_blank">New Zealand</a></h2>
-                    <p class="currency"><b>Currency: </b> NZD</p>
+                    <span><b>Currency: </b></span><span class="currency">NZD</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Auckland, 
@@ -785,11 +813,12 @@
             <!--country 20-->
             <li class="country">
                 <!--display country flag image-->
-                <img src="country_flags\hr.png" alt="Croatia flag">
+                <img src="country_flags/hr.png" alt="Croatia flag">
                 <!--display country name-->
                 <div class="text">
                     <h2 class="name"><a href="https://en.wikipedia.org/wiki/Croatia" target="_blank">Croatia</a></h2>
-                    <p class="currency"><b>Currency: </b> HRK</p>
+                    <span><b>Currency: </b></span><span class="currency">HRK</span>
+                    <br><br>
                     <span class="region-text">Region(s): </span>
                     <span class="region">
                         Bjelovarsko-bilogorska zupanija, 
