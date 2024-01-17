@@ -44,7 +44,7 @@ Hey there, fellow engineering enthusiasts! 👋 As a 3rd-year university student
 5. Download SSH key from "AWS Details."
 6. Click "AWS 🟢," open AWS console.
 
-# Deploying My Website on AWS: A Step-by-Step Adventure
+# Deploying My Website on AWS: A Step-by-Step
 Greetings, fellow engineering pals! 👋 As a third-year student navigating the AWS landscape, let me share my journey on uploading my website to an AWS server. Here's a chill summary:
 
 ## One-time Setup:
