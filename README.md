@@ -1,4 +1,4 @@
-## Dynamic Country Search Project with DOM Manipulation
+# Dynamic Country Search Project with DOM Manipulation
 
 ## Objective:
 Create an HTML page showcasing details of 20 countries, with two nifty search boxes for finding countries by name or currency code. JavaScript magic is involved in dynamically updating the content as you type.
