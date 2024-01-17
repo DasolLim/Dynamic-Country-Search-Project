@@ -1,4 +1,4 @@
-## Project Overview
+## Dynamic Country Search Project with DOM Manipulation
 
 ## Objective:
 Create an HTML page showcasing details of 20 countries, with two nifty search boxes for finding countries by name or currency code. JavaScript magic is involved in dynamically updating the content as you type.
@@ -14,8 +14,19 @@ Create an HTML page showcasing details of 20 countries, with two nifty search bo
 3. **Git:** Your trusty version control system. Use it wisely, create branches, and make meaningful commits. Push that code to Github!
 5. **CSS (implicitly):** While not explicitly mentioned, styling the search results section implies the use of CSS to make it visually distinct.
 
-# Setting Up a Website on Amazon AWS: A Simple Guide
+## Website Display:
+Hey there! Here's the quick visual display of my Fullstack Website Project!
 
+### Home Page:
+![MERN9](https://github.com/DasolLim/Dynamic-Country-Search-Project/assets/92288227/344bd037-1724-44e8-a172-ef63b529b31f)
+
+### Dynamic Country Search:
+![MERN10](https://github.com/DasolLim/Dynamic-Country-Search-Project/assets/92288227/7bafe2bb-fc30-4471-ac82-3fa07ceb0f64)
+
+### Dynamic Currency Search:
+![MERN11](https://github.com/DasolLim/Dynamic-Country-Search-Project/assets/92288227/57dca05b-fa2b-4d2f-bd3c-c803ddce608d)
+
+# Setting Up a Website on Amazon AWS: A Simple Guide
 Hey there, fellow engineering enthusiasts! 👋 As a 3rd-year university student diving into the AWS realm, let's walk through a breezy summary of how to upload your website to an AWS server.
 
 ## One-time Setup:
